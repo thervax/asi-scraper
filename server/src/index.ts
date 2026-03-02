@@ -32,6 +32,7 @@ app.get("/api/articles", async (req, res) => {
           title: string;
           url: string;
           author: string;
+          image: string;
         }> = [];
 
         $issue(".article-post").each((_i, el) => {
@@ -41,8 +42,9 @@ app.get("/api/articles", async (req, res) => {
           const title = titleEl.text().trim();
           const url = titleEl.attr("href") || "";
           const author = block.find(".author-name a").first().text().trim();
+          const image = block.find("figure img").attr("src") || "";
           if (title) {
-            articles.push({ category, title, url, author });
+            articles.push({ category, title, url, author, image });
           }
         });
 

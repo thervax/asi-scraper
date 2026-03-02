@@ -5,6 +5,7 @@ interface Article {
   title: string;
   url: string;
   author: string;
+  image: string;
 }
 
 interface Issue {
@@ -90,10 +91,19 @@ export default function News() {
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block p-4 bg-white border rounded-lg hover:shadow-sm transition-shadow"
+                className="flex gap-4 p-4 bg-white border rounded-lg hover:shadow-sm transition-shadow"
               >
-                <h3 className="font-medium">{article.title}</h3>
-                <p className="text-sm text-gray-500 mt-1">{article.author}</p>
+                {article.image && (
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-20 h-20 object-cover rounded flex-shrink-0"
+                  />
+                )}
+                <div>
+                  <h3 className="font-medium">{article.title}</h3>
+                  <p className="text-sm text-gray-500 mt-1">{article.author}</p>
+                </div>
               </a>
             ))}
           </div>
