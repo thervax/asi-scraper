@@ -1,0 +1,111 @@
+PROMPT 1:
+
+This is a html page with news articles. How do I parse the category, title, url and author from it with cheerio in typescript?
+
+<div class="articles-module  active  articles-articles articles-layout-grid post-type-post post-text-color-dark align wp-block-acf-artiklid" style="--site-yearly-color: #FFFFFF;" id="articles-2" data-block-id="articles-2" data-acf-infinite="false" data-has-more-posts="false" data-infinite-type="scroll" data-button-text="Veel artikleid" data-button-style="outline" data-button-alignment="center" data-posts-per-load="12" data-post-type="[&quot;post&quot;]" data-template-type="articles" data-taxonomies="[]" data-site="" data-articles-order="menu_order" data-template-id="124643" data-blog-id="2" data-layout="grid" data-columns="3" data-dynamic-posts="false" data-current-offset="37" data-show-duplicates="false">
+<div class="wp-block-group is-layout-grid wp-container-core-group-is-layout-988b637e wp-block-group-is-layout-grid" data-columns="3" data-gap-horizontal="32" data-gap-vertical="32" style="gap: 3.2rem; --dynamic-gap: 3.2rem;">
+<div class="wp-block-group article-post has-featured-image category-varia wp-block-group-" data-post-id="206269">
+<div class="wp-block-group has-global-padding is-layout-constrained wp-container-core-group-is-layout-639b5052 wp-block-group-is-layout-constrained" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><figure style="height:200px; margin-bottom:var(--wp--preset--spacing--10);" class="wp-block-post-featured-image aspect-ratio-portrait"><a href="https://www.sirp.ee/sel-reedel-sirbis-453/" target="_self" style="height:200px"><picture class="wp-picture-206281" style="display: contents;"><source type="image/avif" srcset="https://www.sirp.ee/wp-content/uploads/sites/2/2026/02/Sirp_27.veebr_-467x600-jpg.avif"><img src="https://www.sirp.ee/wp-content/uploads/sites/2/2026/02/Sirp_27.veebr_-467x600.jpg" class="attachment-medium size-medium wp-post-image" alt="Sel reedel Sirbis" style="border-radius:0px;height:200px;object-fit:cover;" decoding="async" fetchpriority="high"></picture></a><figcaption class="wp-caption-text"><div class="wp-caption_desc">Esiküljel kuraator Anders Härm</div><div class="wp-caption_source">Piia Ruber</div></figcaption></figure>
+
+
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-is-layout-11335208 wp-block-group-is-layout-flex" style="margin-bottom:var(--wp--preset--spacing--10)"><div class="taxonomy-category has-link-color wp-elements-0f8f346b49994316b4e8c61e95bfe1cb wp-block-post-terms has-text-color has-contrast-color"><a href="https://www.sirp.ee/category/varia/" rel="tag">Varia</a></div></div>
+
+
+<h2 style="font-style:normal;font-weight:700;" class="has-link-color wp-elements-13864130c553620b331c384411981656 wp-block-post-title has-text-color has-custom-header-gray-color has-x-large-font-size has-overpass-font-family"><a href="https://www.sirp.ee/sel-reedel-sirbis-453/" target="_self">Sel reedel Sirbis</a></h2>
+
+<div class="custom-excerpt alignfull excerpt-from-excerpt">„Reaalsuse kõrb võtab võimust“, Juhan Raud vestleb Anders Härmiga<br>
+Kadi-Ell Tähiste ja Maarin Ektermann kunstivaldkonna rahastamisest<br>
+Oliver Issak, „Valmistugem! Kultuuritöötajad tulevad ka tulevikus tänavale“<br>
+Ardo Ran Varres vestles kirjaniku ja kultuuriteadlase Rein Rauaga<br>
+Tristan Priimägi vestles…</div>
+
+<div class="wp-block-post-author-name has-small-font-size author-horizontal-layout"><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.93914 6.81588L0.213182 14.301C-0.0710606 14.5765 -0.0710606 15.0219 0.213182 15.2945C0.497424 15.567 0.957051 15.57 1.23827 15.2945L3.50011 13.1023C3.72388 13.2371 3.96276 13.3426 4.21979 13.41C5.57448 13.7676 7.68211 13.8174 9.73833 12.4956C10.1072 12.2582 9.91371 11.7512 9.47223 11.7512H8.98539C8.83117 11.7512 8.70719 11.6311 8.70719 11.4816C8.70719 11.3614 8.78884 11.2589 8.90375 11.2237L11.8581 10.365C11.9609 10.3357 12.0516 10.2741 12.1121 10.1862C12.2451 9.99865 12.3721 9.80815 12.4931 9.6118C12.6805 9.30993 12.4477 8.93773 12.0848 8.93773H10.9176C10.7634 8.93773 10.6394 8.81757 10.6394 8.6681C10.6394 8.54794 10.7211 8.44537 10.836 8.4102L13.2823 7.69803C13.4214 7.657 13.5363 7.55735 13.5907 7.42547C14.4707 5.27431 14.8728 3.02058 14.9968 1.57573C15.021 1.28559 14.9061 1.00131 14.6944 0.796159C14.4828 0.591008 14.1894 0.47964 13.8901 0.503086C11.3561 0.702375 6.42721 1.68417 3.67247 4.35407C1.25036 6.70158 1.23222 9.35682 1.6737 10.9423C1.73721 11.1739 2.03657 11.2237 2.21195 11.0537L7.1862 6.23559C7.37367 6.05389 7.68211 6.05389 7.86959 6.23559C8.03288 6.39385 8.05404 6.63417 7.93611 6.81588H7.93914Z" fill="#515B62"></path>
+        </svg> <div style="display:flex;" class="author-name"><a href="https://www.sirp.ee/post_author/sirp/">Sirp</a></div></div>
+
+
+<div class="wp-block-group has-custom-header-gray-color has-text-color has-link-color wp-elements-3d677ab20e71dfe9603ce84350848e82 is-nowrap is-layout-flex wp-container-core-group-is-layout-58dc1852 wp-block-group-is-layout-flex"><div style="font-style:normal;font-weight:700; padding-bottom:0;margin-bottom:var(--wp--preset--spacing--10);" class="has-link-color issue-date wp-elements-08790fb67c48137669f4d82cd95a0a46 wp-block-post-date has-text-color has-accent-sirp-color has-small-font-size has-lora-font-family"><time datetime="2026-02-26T07:00:00+02:00">26. II 2026</time></div>
+
+<div class="reading-time" title="Lugemisaeg 3 minutit"><svg class="reading-time-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg> <span class="reading-time-value">3</span><span class="reading-time-text"> minutit</span></div></div>
+</div>
+
+</div>
+
+<div class="wp-block-group article-post has-featured-image category-arhitektuur wp-block-group-" data-post-id="206082">
+<div class="wp-block-group has-global-padding is-layout-constrained wp-container-core-group-is-layout-639b5052 wp-block-group-is-layout-constrained" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><figure style="height:200px; margin-bottom:var(--wp--preset--spacing--10);" class="wp-block-post-featured-image aspect-ratio-square"><a href="https://www.sirp.ee/ruumiloojad-kes-kvaliteedi-arvelt-kompromisse-ei-tee/" target="_self" style="height:200px"><picture class="wp-picture-206024" style="display: contents;"><source type="image/avif" srcset="https://www.sirp.ee/wp-content/uploads/sites/2/2026/02/Sirp2026_7_0014__art_r1-540x600-jpg.avif"><img src="https://www.sirp.ee/wp-content/uploads/sites/2/2026/02/Sirp2026_7_0014__art_r1-540x600.jpg" class="attachment-medium size-medium wp-post-image" alt="Ruumiloojad, kes kvaliteedi arvelt kompromisse ei tee" style="border-radius:0px;height:200px;object-fit:cover;" decoding="async"></picture></a><figcaption class="wp-caption-text"><div class="wp-caption_desc">Salto arhitektuuribüroo asutajad Maarja Kask ja Ralf Lõoke. Saltot iseloomustab pühendumine, soov saavutada ruumiliselt parim lahendus. Nad arvestavad asukoha ja kultuurikontekstiga ning lisavad sinna alati midagi isikupärast, ootamatut. &nbsp;&nbsp;&nbsp;&nbsp;</div><div class="wp-caption_source">Piia Ruber</div></figcaption></figure>
+
+
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-is-layout-11335208 wp-block-group-is-layout-flex" style="margin-bottom:var(--wp--preset--spacing--10)"><div class="taxonomy-category has-link-color wp-elements-0f8f346b49994316b4e8c61e95bfe1cb wp-block-post-terms has-text-color has-contrast-color"><a href="https://www.sirp.ee/category/arhitektuur/" rel="tag">Arhitektuur</a></div></div>
+
+
+<h2 style="font-style:normal;font-weight:700;" class="has-link-color wp-elements-13864130c553620b331c384411981656 wp-block-post-title has-text-color has-custom-header-gray-color has-x-large-font-size has-overpass-font-family"><a href="https://www.sirp.ee/ruumiloojad-kes-kvaliteedi-arvelt-kompromisse-ei-tee/" target="_self">Ruumiloojad, kes kvaliteedi arvelt kompromisse ei tee</a></h2>
+
+<div class="article-subtitle"><p>Maarja Kask: „Kõikvõimalikud nõuded on läinud rangemaks, detailsemaks ja neid on rohkem,  aga arhitektuur ei ole sellest paremaks muutunud.“</p></div>
+
+<div class="wp-block-post-author-name has-small-font-size author-horizontal-layout"><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.93914 6.81588L0.213182 14.301C-0.0710606 14.5765 -0.0710606 15.0219 0.213182 15.2945C0.497424 15.567 0.957051 15.57 1.23827 15.2945L3.50011 13.1023C3.72388 13.2371 3.96276 13.3426 4.21979 13.41C5.57448 13.7676 7.68211 13.8174 9.73833 12.4956C10.1072 12.2582 9.91371 11.7512 9.47223 11.7512H8.98539C8.83117 11.7512 8.70719 11.6311 8.70719 11.4816C8.70719 11.3614 8.78884 11.2589 8.90375 11.2237L11.8581 10.365C11.9609 10.3357 12.0516 10.2741 12.1121 10.1862C12.2451 9.99865 12.3721 9.80815 12.4931 9.6118C12.6805 9.30993 12.4477 8.93773 12.0848 8.93773H10.9176C10.7634 8.93773 10.6394 8.81757 10.6394 8.6681C10.6394 8.54794 10.7211 8.44537 10.836 8.4102L13.2823 7.69803C13.4214 7.657 13.5363 7.55735 13.5907 7.42547C14.4707 5.27431 14.8728 3.02058 14.9968 1.57573C15.021 1.28559 14.9061 1.00131 14.6944 0.796159C14.4828 0.591008 14.1894 0.47964 13.8901 0.503086C11.3561 0.702375 6.42721 1.68417 3.67247 4.35407C1.25036 6.70158 1.23222 9.35682 1.6737 10.9423C1.73721 11.1739 2.03657 11.2237 2.21195 11.0537L7.1862 6.23559C7.37367 6.05389 7.68211 6.05389 7.86959 6.23559C8.03288 6.39385 8.05404 6.63417 7.93611 6.81588H7.93914Z" fill="#515B62"></path>
+        </svg> <div style="display:flex;" class="author-name"><a href="https://www.sirp.ee/post_author/margit-mutso/">Margit Mutso</a></div></div>
+
+
+
+
+
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-is-layout-11335208 wp-block-group-is-layout-flex" style="margin-bottom:var(--wp--preset--spacing--10)"><div class="taxonomy-category has-link-color wp-elements-0f8f346b49994316b4e8c61e95bfe1cb wp-block-post-terms has-text-color has-contrast-color"><a href="https://www.sirp.ee/category/varia/minu-mang/" rel="tag">Minu mäng</a></div></div>
+
+
+<h2 style="font-style:normal;font-weight:700;" class="has-link-color wp-elements-13864130c553620b331c384411981656 wp-block-post-title has-text-color has-custom-header-gray-color has-x-large-font-size has-overpass-font-family"><a href="https://www.sirp.ee/voita-voi-tantsida/" target="_self">Võita või tantsida?&nbsp;</a></h2>
+
+<div class="custom-excerpt alignfull excerpt-from-content">„Sina mängid, et võita, aga mina hoopis tantsin.“&nbsp;Nii teatasin mõneti nipsakalt ja&nbsp;teadlikult&nbsp;provokatiivselt umbes aasta tagasi ühes eravestluses. Olukorra kontekst pole praegu enam oluline, kuid&nbsp;materjali&nbsp;võiks&nbsp;siin&nbsp;olla&nbsp;laiemaks üldistuseks. See näitlikustab&nbsp;põhimõttelist vastuolu suhtumises ellu, eesmärkidesse,…</div>
+
+<div class="wp-block-post-author-name has-small-font-size author-horizontal-layout"><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.93914 6.81588L0.213182 14.301C-0.0710606 14.5765 -0.0710606 15.0219 0.213182 15.2945C0.497424 15.567 0.957051 15.57 1.23827 15.2945L3.50011 13.1023C3.72388 13.2371 3.96276 13.3426 4.21979 13.41C5.57448 13.7676 7.68211 13.8174 9.73833 12.4956C10.1072 12.2582 9.91371 11.7512 9.47223 11.7512H8.98539C8.83117 11.7512 8.70719 11.6311 8.70719 11.4816C8.70719 11.3614 8.78884 11.2589 8.90375 11.2237L11.8581 10.365C11.9609 10.3357 12.0516 10.2741 12.1121 10.1862C12.2451 9.99865 12.3721 9.80815 12.4931 9.6118C12.6805 9.30993 12.4477 8.93773 12.0848 8.93773H10.9176C10.7634 8.93773 10.6394 8.81757 10.6394 8.6681C10.6394 8.54794 10.7211 8.44537 10.836 8.4102L13.2823 7.69803C13.4214 7.657 13.5363 7.55735 13.5907 7.42547C14.4707 5.27431 14.8728 3.02058 14.9968 1.57573C15.021 1.28559 14.9061 1.00131 14.6944 0.796159C14.4828 0.591008 14.1894 0.47964 13.8901 0.503086C11.3561 0.702375 6.42721 1.68417 3.67247 4.35407C1.25036 6.70158 1.23222 9.35682 1.6737 10.9423C1.73721 11.1739 2.03657 11.2237 2.21195 11.0537L7.1862 6.23559C7.37367 6.05389 7.68211 6.05389 7.86959 6.23559C8.03288 6.39385 8.05404 6.63417 7.93611 6.81588H7.93914Z" fill="#515B62"></path>
+        </svg> <div style="display:flex;" class="author-name"><a href="https://www.sirp.ee/post_author/leenu-nigu/">Leenu Nigu</a></div></div>
+
+
+<div class="wp-block-group has-custom-header-gray-color has-text-color has-link-color wp-elements-3d677ab20e71dfe9603ce84350848e82 is-nowrap is-layout-flex wp-container-core-group-is-layout-58dc1852 wp-block-group-is-layout-flex"><div style="font-style:normal;font-weight:700; padding-bottom:0;margin-bottom:var(--wp--preset--spacing--10);" class="has-link-color issue-date wp-elements-08790fb67c48137669f4d82cd95a0a46 wp-block-post-date has-text-color has-accent-sirp-color has-small-font-size has-lora-font-family"><time datetime="2026-02-20T07:00:00+02:00">20. II 2026</time></div>
+
+<div class="reading-time" title="Lugemisaeg 2 minutit"><svg class="reading-time-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg> <span class="reading-time-value">2</span><span class="reading-time-text"> minutit</span></div></div>
+</div>
+
+</div>
+</div>
+</div>
+
+VASTUS 1:
+
+Here is how you can parse the **category, title, url, and author** from each article block using Cheerio in TypeScript.
+You iterate over each `.article-post`, then query inside each block for the relevant elements:
+
+```ts
+$issue(".article-post").each((_i, el) => {
+  const block = $issue(el);
+
+  const category = block.find("a[rel=tag]").first().text().trim();
+
+  const titleEl = block.find("h2 a[target=_self]");
+  const title = titleEl.text().trim();
+  const url = titleEl.attr("href") || "";
+
+  const author = block.find(".author-name a").first().text().trim();
+
+  if (title) {
+    articles.push({ category, title, url, author });
+  }
+});
+```
+
+### What this does:
+
+* Selects each article container using `.article-post`
+* Extracts:
+
+  * `category` from the first `<a rel="tag">`
+  * `title` and `url` from the `<h2>` link
+  * `author` from `.author-name a`
+* Pushes structured data into your `articles` array only if a title exists
+
+This works cleanly with the HTML structure you provided.
+
+SELGITUS 1:
+
+Kasutasin seda server/src/index.ts failis, et Sirbist artikleid scrapida.
