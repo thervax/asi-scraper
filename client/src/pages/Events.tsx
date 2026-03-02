@@ -104,9 +104,7 @@ export default function Events() {
         !error &&
         Object.entries(grouped).map(([date, items]) => (
           <div key={date} className="mb-8">
-            <h2 className="text-lg font-semibold border-b pb-2 mb-4">
-              {date}
-            </h2>
+            <h2 className="text-lg font-semibold border-b pb-2 mb-4">{date}</h2>
             <div className="space-y-3">
               {items.map((event, i) => (
                 <a
@@ -120,7 +118,7 @@ export default function Events() {
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="w-20 h-20 object-cover rounded flex-shrink-0"
+                      className="w-20 h-20 object-cover rounded shrink-0"
                     />
                   )}
                   <div className="min-w-0">

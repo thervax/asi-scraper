@@ -638,3 +638,128 @@ That’s the simplest way to get near-instant API responses without adding Redis
 SELGITUS 3:
 
 Kasutasin seda loogikat server/src/index.ts failis, et andmeid vahemälus hoida (mitte iga kord uuesti scrapida).
+
+PROMPT 4:
+
+I have two folders in my project, client and server. They are both typescript projects with pnpm dev as the run command. How do I make it so I can run them with one command in a monorepo? I am using pnpm
+
+VASTUS 4:
+
+You can turn your repo into a **pnpm workspace** and then run both `client` and `server` from the root with a single command. The cleanest setup is:
+
+* root workspace config (`pnpm-workspace.yaml`)
+* root `package.json` scripts that run the two packages
+* optionally use `concurrently` (or `turbo`) for better DX
+
+## 1) Create `pnpm-workspace.yaml` at the repo root
+
+```yaml
+packages:
+  - "client"
+  - "server"
+```
+
+That tells pnpm “these folders are workspace packages”.
+
+## 2) Make sure each package has a name and a dev script
+
+**client/package.json**
+
+```json
+{
+  "name": "@acme/client",
+  "private": true,
+  "scripts": {
+    "dev": "your-client-dev-command"
+  }
+}
+```
+
+**server/package.json**
+
+```json
+{
+  "name": "@acme/server",
+  "private": true,
+  "scripts": {
+    "dev": "your-server-dev-command"
+  }
+}
+```
+
+(You already have `pnpm dev` working inside each folder, so this is mostly ensuring they have `scripts.dev` and a `name`.)
+
+## 3) Add a root `package.json` that runs both
+
+At the repo root:
+
+**package.json**
+
+```json
+{
+  "name": "my-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel dev"
+  }
+}
+```
+
+Now from the root you can run:
+
+```bash
+pnpm dev
+```
+
+That will run `dev` in both `client` and `server` in parallel.
+
+### Useful variations
+
+Run only one package:
+
+```bash
+pnpm --filter @acme/client dev
+pnpm --filter @acme/server dev
+```
+
+Run in “streamed” mode (better logs sometimes):
+
+```bash
+pnpm -r --parallel --stream dev
+```
+
+## 4) (Recommended) Make logs readable with `concurrently`
+
+pnpm’s parallel logs can get noisy. A common upgrade is `concurrently`:
+
+```bash
+pnpm add -D concurrently -w
+```
+
+Then root `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "concurrently -n client,server -c auto \"pnpm --filter @acme/client dev\" \"pnpm --filter @acme/server dev\""
+  }
+}
+```
+
+## 5) (Optional) Share TS config / tooling cleanly
+
+If you want shared TypeScript config and linting later, add a `packages/config` workspace or a root `tsconfig.base.json` and have both extend it. Not required for “one command dev”, but common in monorepos.
+
+---
+
+### What you’ll end up doing day-to-day
+
+* `pnpm dev` (from repo root) → runs both `client` + `server`
+* `pnpm --filter @acme/server dev` → just server
+* `pnpm --filter @acme/client dev` → just client
+
+If you paste your current root `package.json` (or confirm whether you already have one), I can show the exact minimal diff for your repo structure.
+
+SELGITUS 4:
+
+Muutsin projekti monorepoks.
