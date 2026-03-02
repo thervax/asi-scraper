@@ -87,6 +87,58 @@ app.get("/api/events", async (req, res) => {
   }
 });
 
+const PREMIERES_URL =
+  "https://teater.ee/teatriinfo/mangukava/?f%5Bname_or_tag%5D=&f%5Bperformance_time_start%5D=&f%5Bperformance_time_end%5D=&f%5Btheaters%5D=&f%5Bvenue_id%5D=&f%5Baccessibility%5D=&f%5Bpremiere%5D=1";
+
+app.get("/api/premieres", async (req, res) => {
+  try {
+    const { data } = await axios.get(PREMIERES_URL);
+    const $ = cheerio.load(data);
+
+    const premieres: Array<{
+      date: string;
+      time: string;
+      title: string;
+      location: string;
+      image: string;
+      url: string;
+    }> = [];
+
+    let currentDate = "";
+    $(".post-etendus__heading, .block-etendus").each((_i, el) => {
+      const e = $(el);
+      if (e.hasClass("post-etendus__heading")) {
+        currentDate = e.text().trim();
+        return;
+      }
+      const time = e.find(".block-etendus__time").text().trim();
+      const title = e.find(".block-etendus__paragraph-big").text().trim();
+      const smalls = e
+        .find(".block-etendus__paragraph-small")
+        .not(".hashtags-wrapper");
+      const location = smalls.eq(1).text().trim();
+      const image = e.find("img").attr("src") || "";
+      const href = e.find(".block-set__cage-text a").attr("href") || "";
+
+      if (title) {
+        premieres.push({
+          date: currentDate,
+          time,
+          title,
+          location,
+          image,
+          url: href.startsWith("/") ? "https://teater.ee" + href : href,
+        });
+      }
+    });
+
+    res.json(premieres);
+  } catch (err) {
+    console.error("Failed to fetch premieres:", err);
+    res.status(500).json({ error: "Esietenduste laadimine ebaõnnestus" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log("Server running on http://localhost:" + PORT);
 });

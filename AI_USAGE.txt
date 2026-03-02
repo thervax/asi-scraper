@@ -109,3 +109,290 @@ This works cleanly with the HTML structure you provided.
 SELGITUS 1:
 
 Kasutasin seda server/src/index.ts failis, et Sirbist artikleid scrapida.
+
+PROMPT 2:
+
+How do I get the date, time, title, location, image and url from this with cheerio typescript?
+
+
+<div class="post-block">
+				
+                <div class="grid-x post-etendus__item heading-etendus">
+                    <h2 class="post-etendus__heading">K,  4. märts 2026</h2>
+                    <div class="cell large-12">
+                        <div class="block-etendus">
+                            <div class="block-etendus-main-wrap">
+                                <a href="/teatriinfo/lavastused/minu-elu-parimad-jamad-lustipidu-ee/">
+                                    <div class="block-etendus__cage-img">
+                                        <p class="block-etendus__time">19:00</p>
+                                        <img src="https://minu.teater.ee/uploads/productions/picture/17508/Minu_elu_koige_parimad_jamad_thumbnail.jpg" alt="Lavastuse plakat" class="block-set__img">
+                                    </div>
+                                </a>
+                                <div class="block-set__cage-text">
+                                    <div class="block-set__cage-text--heading">
+                                        <a href="/teatriinfo/lavastused/minu-elu-parimad-jamad-lustipidu-ee/"><h3 class="block-etendus__paragraph-big">Minu elu parimad jamad</h3></a>
+                                    </div>
+                                    
+                                    <p class="block-etendus__paragraph-small hashtags-wrapper">
+                                        
+                                    </p>
+                                    <p class="block-etendus__paragraph-small">
+                                        Lustipidu.ee
+                                    </p>
+                                    <p class="block-etendus__paragraph-small">
+                                        Põlva Kultuurikeskus <span class="venue-address">(Kesk tänav 15, Põlva)</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="block-etendus-status">
+                                
+                                    <div class="badges_wrapper">
+                                        
+                                        
+                                        
+                                        <span class="badge primary badge-cacelled">Esietendus</span>
+                                        
+                                    </div>
+                            </div>
+                            <div class="block-etendus-secondary-wrap"><div class="accessibility-icons"></div>
+                            <div class="block-set__cage-buttons">
+                                <button type="button" class="small__button">
+                                    <a href="/teatriinfo/lavastused/minu-elu-parimad-jamad-lustipidu-ee/" class="user-nav__link--enter">
+                                        <span>Vaata</span>
+                                    </a>
+                                </button>
+                                <a target="_blank" href="https://sviby.com/et/e/2gk1s3" class="small__button buy-ticket"><img src="https://teater.ee/wp-content/themes/teater/assets/img/ticket.svg" alt="print-icon" class="user-nav__icon-print"><div class="user-nav__link--enter"><span>Osta pilet</span></div></a>
+                            </div>
+                            </div>
+                        </div> <!-- block-set close -->
+
+                    </div>
+                </div> <!-- grid-x close -->
+
+                <div class="grid-x post-etendus__item heading-etendus">
+                    <h2 class="post-etendus__heading">N,  5. märts 2026</h2>
+                    <div class="cell large-12">
+                        <div class="block-etendus">
+                            <div class="block-etendus-main-wrap">
+                                <a href="/teatriinfo/lavastused/paul-ettur-ja-kuningas/">
+                                    <div class="block-etendus__cage-img">
+                                        <p class="block-etendus__time">19:00</p>
+                                        <img src="https://minu.teater.ee/uploads/productions/picture/16683/Paul_-_ettur_ja_kuningas_thumbnail.jpg" alt="Lavastuse plakat" class="block-set__img">
+                                    </div>
+                                </a>
+                                <div class="block-set__cage-text">
+                                    <div class="block-set__cage-text--heading">
+                                        <a href="/teatriinfo/lavastused/paul-ettur-ja-kuningas/"><h3 class="block-etendus__paragraph-big">Paul – ettur ja kuningas</h3></a>
+                                    </div>
+                                    
+                                    <p class="block-etendus__paragraph-small hashtags-wrapper">
+                                        
+                                    </p>
+                                    <p class="block-etendus__paragraph-small">
+                                        Teater Nuutrum
+                                    </p>
+                                    <p class="block-etendus__paragraph-small">
+                                        Viimsi Artium <span class="venue-address">(Randvere tee 20, Lubja, Harju maakond)</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="block-etendus-status">
+                                
+                                    <div class="badges_wrapper">
+                                        
+                                        
+                                        
+                                        <span class="badge primary badge-cacelled">Esietendus</span>
+                                        
+                                    </div>
+                            </div>
+                            <div class="block-etendus-secondary-wrap"><div class="accessibility-icons">
+		<span class="accessibility-icon">
+			<img src="https://teater.ee/wp-content/themes/teater/assets/img/ratastool.svg" alt="Ratastool" class="tooltipstered">
+		</span></div>
+                            <div class="block-set__cage-buttons">
+                                <button type="button" class="small__button">
+                                    <a href="/teatriinfo/lavastused/paul-ettur-ja-kuningas/" class="user-nav__link--enter">
+                                        <span>Vaata</span>
+                                    </a>
+                                </button>
+                                
+                    <div class="open-btn-selection">
+                        <button type="button" class="small__button buy-ticket">
+                            <img src="https://teater.ee/wp-content/themes/teater/assets/img/ticket.svg" alt="print-icon" class="user-nav__icon-print">
+                            <div class="user-nav__link--enter">
+                                <span>Osta pilet</span>
+                            </div>
+                        </button>
+                      <ul class="btn-selection">
+                        <li><a target="_blank" href="https://www.piletilevi.ee/est/piletid/teater/draama/paul-ettur-ja-kuningas-487830/">Piletilevist</a></li>
+                        <li><a target="_blank" href="https://www.piletimaailm.com/performances/148796/buy">Piletimaailmast</a></li>
+                        
+                        
+                        
+                        </ul>
+                    </div>
+                            </div>
+                            </div>
+                        </div> <!-- block-set close -->
+
+                    </div>
+                </div> <!-- grid-x close -->
+
+                
+		<span class="accessibility-icon">
+			<img src="https://teater.ee/wp-content/themes/teater/assets/img/ratastool.svg" alt="Ratastool" class="tooltipstered">
+		</span></div>
+                            <div class="block-set__cage-buttons">
+                                <button type="button" class="small__button">
+                                    <a href="/teatriinfo/lavastused/pimekaader-rakvere-teater/" class="user-nav__link--enter">
+                                        <span>Vaata</span>
+                                    </a>
+                                </button>
+                                <a target="_blank" href="https://www.piletimaailm.com/performances/148895/buy" class="small__button buy-ticket"><img src="https://teater.ee/wp-content/themes/teater/assets/img/ticket.svg" alt="print-icon" class="user-nav__icon-print"><div class="user-nav__link--enter"><span>Osta pilet</span></div></a>
+                            </div>
+                            </div>
+                        </div> <!-- block-set close -->
+
+                        <div class="block-etendus">
+                            <div class="block-etendus-main-wrap">
+                                <a href="/teatriinfo/lavastused/ruta-ronja-pakalne-softpower-kanuti-gildi-saal/">
+                                    <div class="block-etendus__cage-img">
+                                        <p class="block-etendus__time">19:30</p>
+                                        <img src="https://minu.teater.ee/uploads/productions/picture/17317/Ruta_Ronja_Pakalne_SOFTPOWER_thumbnail.jpg" alt="Lavastuse plakat" class="block-set__img">
+                                    </div>
+                                </a>
+                                <div class="block-set__cage-text">
+                                    <div class="block-set__cage-text--heading">
+                                        <a href="/teatriinfo/lavastused/ruta-ronja-pakalne-softpower-kanuti-gildi-saal/"><h3 class="block-etendus__paragraph-big">SOFTPOWER</h3></a>
+                                    </div>
+                                    
+                                    <p class="block-etendus__paragraph-small hashtags-wrapper">
+                                        
+                                    </p>
+                                    <p class="block-etendus__paragraph-small">
+                                        
+                                    </p>
+                                    <p class="block-etendus__paragraph-small">
+                                        Kanuti Gildi SAAL <span class="venue-address">(Pikk 20, Tallinn)</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="block-etendus-status">
+                                
+                                    <div class="badges_wrapper">
+                                        
+                                        
+                                        
+                                        <span class="badge primary badge-cacelled">Esietendus</span>
+                                        
+                                    </div>
+                            </div>
+                            <div class="block-etendus-secondary-wrap"><div class="accessibility-icons">
+		<span class="accessibility-icon">
+			<img src="https://teater.ee/wp-content/themes/teater/assets/img/ratastool.svg" alt="Ratastool" class="tooltipstered">
+		</span>
+		<span class="accessibility-icon">
+			<img src="https://teater.ee/wp-content/themes/teater/assets/img/muu-erivajadus.svg" alt="Teater palub ratastooliga tulijal endast varem märku anda" class="tooltipstered">
+		</span></div>
+                            <div class="block-set__cage-buttons">
+                                <button type="button" class="small__button">
+                                    <a href="/teatriinfo/lavastused/ruta-ronja-pakalne-softpower-kanuti-gildi-saal/" class="user-nav__link--enter">
+                                        <span>Vaata</span>
+                                    </a>
+                                </button>
+                                <a target="_blank" href="https://fienta.com/et/softpower" class="small__button buy-ticket"><img src="https://teater.ee/wp-content/themes/teater/assets/img/ticket.svg" alt="print-icon" class="user-nav__icon-print"><div class="user-nav__link--enter"><span>Osta pilet</span></div></a>
+                            </div>
+                            </div>
+                        </div> <!-- block-set close -->
+
+                    </div>
+                </div> <!-- grid-x close -->
+            </div>
+
+VASTUS 2:
+
+Here is how you can extract the **date, time, title, location, image and url** using Cheerio in TypeScript.
+
+The page structure alternates between:
+
+* `.post-etendus__heading` → contains the date
+* `.block-etendus` → contains the individual event
+
+So we keep track of the current date and attach it to each event that follows it.
+
+```ts
+let currentDate = "";
+const events: {
+  date: string;
+  time: string;
+  title: string;
+  location: string;
+  image: string;
+  url: string;
+}[] = [];
+
+$(".post-etendus__heading, .block-etendus").each((_i, el) => {
+  const e = $(el);
+
+  // When we hit a heading row, store the date
+  if (e.hasClass("post-etendus__heading")) {
+    currentDate = e.text().trim();
+    return;
+  }
+
+  // Time (inside image cage)
+  const time = e.find(".block-etendus__time").first().text().trim();
+
+  // Title
+  const title = e.find(".block-etendus__paragraph-big").first().text().trim();
+
+  // Small paragraph blocks (skip hashtags)
+  const smalls = e
+    .find(".block-etendus__paragraph-small")
+    .not(".hashtags-wrapper");
+
+  // Location is typically the last small paragraph
+  const location = smalls.last().text().trim();
+
+  // Image
+  const image = e.find(".block-etendus__cage-img img").attr("src") || "";
+
+  // URL (prefer title link)
+  const href =
+    e.find(".block-set__cage-text--heading a").attr("href") ||
+    e.find(".block-set__cage-buttons a.user-nav__link--enter").attr("href") ||
+    "";
+
+  const url = href ? new URL(href, "https://teater.ee").toString() : "";
+
+  if (title) {
+    events.push({
+      date: currentDate, // e.g. "K, 4. märts 2026"
+      time,              // e.g. "19:00"
+      title,
+      location,
+      image,
+      url,
+    });
+  }
+});
+```
+
+### What this does
+
+* Stores the current date whenever a `.post-etendus__heading` is encountered.
+* Extracts:
+
+  * `time` from `.block-etendus__time`
+  * `title` from `.block-etendus__paragraph-big`
+  * `location` from the last non-hashtag `.block-etendus__paragraph-small`
+  * `image` from the `<img>` inside the image container
+  * `url` from the title link (with fallback to the “Vaata” button)
+* Builds a structured `events` array you can use downstream.
+
+This matches the HTML structure you provided and handles multiple events under the same date correctly.
+
+SELGITUS 1:
+
+Kasutasin seda server/src/index.ts failis, et teater.ee lehelt esietendusi scrapida.

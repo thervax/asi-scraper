@@ -23,6 +23,9 @@ export default function Navbar() {
           <Link to="/uritused" className={linkClass("/uritused")}>
             Üritused
           </Link>
+          <Link to="/esietendused" className={linkClass("/esietendused")}>
+            Esietendused
+          </Link>
         </div>
       </div>
     </nav>
